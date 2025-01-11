@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: NetworkSecurity
+Version: 0.0.1
+Author: Pratham Vichare
+Author-email: prathamvichare645@gmail.com
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: python-dotenv
+Requires-Dist: certifi
+Requires-Dist: pymongo
