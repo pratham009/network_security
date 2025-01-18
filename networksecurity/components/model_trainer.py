@@ -13,7 +13,7 @@ from networksecurity.utils.ml_utils.model.estimator import NetworkModel
 from networksecurity.utils.main_utils.utils import save_object,load_object,evaluate_models
 from networksecurity.utils.main_utils.utils import load_numpy_array_data
 from networksecurity.utils.ml_utils.metric.classification_metric import get_classification_score
-
+import dagshub
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import r2_score
 from sklearn.neighbors import KNeighborsClassifier
@@ -24,6 +24,8 @@ from sklearn.ensemble import (
     RandomForestClassifier,
 )
 
+
+dagshub.init(repo_owner='pratham009', repo_name='network_security', mlflow=True)
 
 
 class ModelTrainer:
@@ -145,33 +147,5 @@ class ModelTrainer:
             model_trainer_artifact=self.train_model(x_train,y_train,x_test,y_test)
             return model_trainer_artifact
 
-            
-        except Exception as e:
-            raise NetworkSecurityException(e,sys)
-
-
-
-    
-            
-    def initiate_model_trainer(self)->ModeltrainerArtifact:
-        try:
-            train_file_path = self.data_transformation_artifact.transformed_train_file_path
-            test_file_path = self.data_transformation_artifact.transformed_test_file_path
-
-            #loading training array and testing array
-            train_arr = load_numpy_array_data(train_file_path)
-            test_arr = load_numpy_array_data(test_file_path)
-
-            x_train, y_train, x_test, y_test = (
-                train_arr[:, :-1],
-                train_arr[:, -1],
-                test_arr[:, :-1],
-                test_arr[:, -1],
-            )
-
-            model_trainer_artifact=self.train_model(x_train,y_train,x_test,y_test)
-            return model_trainer_artifact
-
-            
         except Exception as e:
             raise NetworkSecurityException(e,sys)
