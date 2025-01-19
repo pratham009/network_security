@@ -13,7 +13,7 @@ from networksecurity.utils.ml_utils.model.estimator import NetworkModel
 from networksecurity.utils.main_utils.utils import save_object,load_object,evaluate_models
 from networksecurity.utils.main_utils.utils import load_numpy_array_data
 from networksecurity.utils.ml_utils.metric.classification_metric import get_classification_score
-import dagshub
+
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import r2_score
 from sklearn.neighbors import KNeighborsClassifier
@@ -23,7 +23,7 @@ from sklearn.ensemble import (
     GradientBoostingClassifier,
     RandomForestClassifier,
 )
-
+import dagshub # type: ignore
 
 dagshub.init(repo_owner='pratham009', repo_name='network_security', mlflow=True)
 
